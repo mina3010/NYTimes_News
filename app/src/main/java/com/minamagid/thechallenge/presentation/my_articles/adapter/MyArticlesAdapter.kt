@@ -1,4 +1,4 @@
-package com.minamagid.thechallenge.presentation.articlesScreen.adapter
+package com.minamagid.thechallenge.presentation.my_articles.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +11,8 @@ import coil.transform.RoundedCornersTransformation
 import com.minamagid.thechallenge.databinding.ItemPostArticleBinding
 import com.minamagid.thechallenge.domain.model.homeResponses.Result
 
-class ArticlesAdapter (private val onSaveClickListener: OnSaveClickListener?,
-): RecyclerView.Adapter<ArticlesAdapter.NewsVH>() {
+class MyArticlesAdapter (private val onSaveClickListener: OnSaveClickListener?,
+): RecyclerView.Adapter<MyArticlesAdapter.NewsVH>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Result>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {

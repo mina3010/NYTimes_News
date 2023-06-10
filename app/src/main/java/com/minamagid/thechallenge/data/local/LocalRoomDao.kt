@@ -8,8 +8,9 @@ import com.minamagid.thechallenge.domain.model.homeResponses.Result
 
 @Dao
 interface LocalRoomDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(article: Result?)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(result: Result?){}
+
 
     @Query("delete from RESULT where id =:idData")
     suspend fun deleteItemLocalRoom(idData: Long?)

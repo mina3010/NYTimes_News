@@ -64,6 +64,7 @@ object AppModule {
                 .writeTimeout(timeOutMinutes, TimeUnit.MINUTES)
                 .build()
         }
+
     @Provides
     @Singleton
     fun provideRetrofit(): Api {
@@ -88,7 +89,10 @@ object AppModule {
             app,
             NYTimesDB::class.java,
             NYTimesDB.DATABASE_NAME
-        ).allowMainThreadQueries().build()
+        ).fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
+
     }
 
     @Singleton
@@ -96,8 +100,6 @@ object AppModule {
     fun providesNetworkManager(@ApplicationContext context: Context): NetworkManager {
         return NetworkManager(context)
     }
-
-
 
 
 }

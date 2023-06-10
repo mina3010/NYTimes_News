@@ -1,5 +1,6 @@
 package com.minamagid.thechallenge.presentation.articlesScreen
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -118,6 +119,7 @@ class ArticlesViewModel @Inject constructor(
         insertArticleUseCase(article).onEach { response ->
             when (response) {
                 is Resource.Success -> {
+                    Log.d("mina_insert","0")
                     _state.value = ArticlesState(isLoading = false)
                 }
                 is Resource.Error -> {

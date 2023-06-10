@@ -51,10 +51,16 @@ class HomeFragment : Fragment() {
                 Bundle().apply { putInt(TYPE_DATA, MOST_SHARED) })
 
         }
+
         viewDataBinding.mostEmailsBtn.setOnClickListener {
             it.findNavController().navigate(
                 R.id.action_navigation_home_to_navigation_articles,
                 Bundle().apply { putInt(TYPE_DATA, MOST_EMAILED) })
+        }
+
+        viewDataBinding.myArticlesBtn.setOnClickListener {
+            it.findNavController().navigate(
+                R.id.action_navigation_home_to_myArticleDetailsFragment)
         }
     }
 

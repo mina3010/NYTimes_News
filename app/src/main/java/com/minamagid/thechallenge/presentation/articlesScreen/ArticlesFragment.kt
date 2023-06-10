@@ -2,6 +2,7 @@ package com.minamagid.thechallenge.presentation.articlesScreen
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.minamagid.thechallenge.R
 import com.minamagid.thechallenge.common.Constants.TYPE_DATA
+import com.minamagid.thechallenge.domain.model.homeResponses.Result
 import com.minamagid.thechallenge.presentation.articlesScreen.adapter.ArticlesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_articles.view.*
@@ -42,9 +44,16 @@ class ArticlesFragment : Fragment() {
     }
 
     private fun setAdapter(root: View?) {
-        val adapter = ArticlesAdapter()
         if (viewModel.networkObserver.value == true) {
             viewModel.listDataRemote.observe(viewLifecycleOwner){
+                val adapter = ArticlesAdapter(object : ArticlesAdapter.OnSaveClickListener {
+                    override fun onItemClick(v: View, model: Result, position: Int) {
+                        viewModel.insertArticleLocal(model)
+                        Toast.makeText(requireActivity(), "insert successfully", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
+
                 adapter.differ.submitList(it)
                 root?.article_rv?.adapter = adapter
 
@@ -57,10 +66,6 @@ class ArticlesFragment : Fragment() {
                         bundle
                     )
                 }
-//                viewModel.clearLocalDB()
-                it?.forEach {
-                    viewModel.insertArticleLocal(it)
-                }
             }
 
             viewModel.isLoad.observe(viewLifecycleOwner){
@@ -72,8 +77,9 @@ class ArticlesFragment : Fragment() {
         }else{
             root?.progressBar?.isVisible = false
             Toast.makeText(requireActivity(), "no internet connection", Toast.LENGTH_SHORT).show()
-            viewModel.getLocalArticlesData()
+//            viewModel.getLocalArticlesData()
             viewModel.listDataRemote.observe(viewLifecycleOwner){
+                val adapter = ArticlesAdapter(null)
                 adapter.differ.submitList(it)
                 root?.article_rv?.adapter = adapter
                 Log.d(TAG,"offline ${it?.size}")

@@ -8,10 +8,10 @@ import java.io.Serializable
 import kotlin.Result
 
 
-@Entity(tableName = "result", indices = [Index(value = ["id"], unique = true)])
-
+@Entity(tableName = "result")
+@Keep
 data class Result(
-    @PrimaryKey(autoGenerate = true)@ColumnInfo(name = "id")
+    @PrimaryKey()@ColumnInfo(name = "id")
     @SerializedName("id")
     var id: Long=0,
     @SerializedName("abstract")

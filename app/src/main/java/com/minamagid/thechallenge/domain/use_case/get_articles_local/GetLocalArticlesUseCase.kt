@@ -13,8 +13,10 @@ class GetLocalArticlesUseCase @Inject constructor(val repository: Repository) {
     operator fun invoke(
     ): Flow<Resource<List<Result>>> = flow {
         try {
-            val movies = repository.getArticles()
-            emit(Resource.Success<List<Result>>(movies as List<Result>))
+            val articles = repository.getArticles()
+            val nullableList: List<Result?> = articles
+            val nonNullableList: List<Result> = nullableList.filterNotNull()
+            emit(Resource.Success<List<Result>>(nonNullableList))
         } catch (e: HttpException) {
             emit(Resource.Error<List<Result>>(e.localizedMessage ?: "an Error Occurred"))
         } catch (e: IOException) {

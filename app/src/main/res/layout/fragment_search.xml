@@ -61,8 +61,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/_70sdp">
+                android:layout_height="match_parent">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/searchEd"
@@ -85,14 +84,14 @@
                     android:id="@+id/searchRv"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/searchEd"
-                    tools:itemCount="4"
+                    tools:itemCount="8"
                     tools:listitem="@layout/drop_down_item" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

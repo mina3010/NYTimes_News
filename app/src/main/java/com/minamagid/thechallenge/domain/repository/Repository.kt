@@ -4,6 +4,8 @@ import android.util.Log
 import com.minamagid.thechallenge.domain.model.homeResponses.GeneralResponse
 import com.minamagid.thechallenge.domain.model.homeResponses.Result
 import com.minamagid.thechallenge.domain.model.search.SearchResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 interface Repository {
@@ -15,8 +17,8 @@ interface Repository {
 
     suspend fun getArticles(): List<Result?>
     suspend fun deleteArticle(articleId: Long?)
-    suspend fun insertArticle(article: Result?){
-        Log.d("RoomInsert", "Insert operation successful: $article")
+    suspend fun insertArticle(result: Result?){
+        Log.d("mina_insert","3")
     }
     suspend fun deleteLocalTable()
 }

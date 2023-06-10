@@ -9,6 +9,8 @@ import androidx.paging.LoadState
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.minamagid.thechallenge.R
 import com.minamagid.thechallenge.databinding.DropDownItemBinding
 import com.minamagid.thechallenge.domain.model.search.Doc
@@ -73,9 +75,7 @@ class SearchResultAdapter : PagingDataAdapter<Doc, RecyclerView.ViewHolder>(Diff
         val previousLoadState = loadState
         loadState = newLoadState
         if (previousLoadState is LoadState.Error && newLoadState is LoadState.Loading) {
-            // Handle retry or additional loading state logic
         }
-        // Notify the adapter that the load state has changed
         if (previousLoadState != newLoadState) {
             notifyItemChanged(itemCount)
         }
@@ -83,8 +83,14 @@ class SearchResultAdapter : PagingDataAdapter<Doc, RecyclerView.ViewHolder>(Diff
     inner class SearchResultViewHolder(private val binding: DropDownItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(searchResult: Doc) {
-            binding.txtData.text = searchResult.abstract
-            binding.pBar.isVisible = itemCount == itemCount -1
+            binding.txtData.text = searchResult.headline?.main
+            binding.itemPostDescription.text = searchResult.abstract
+            binding.itemPostAuthor.text = searchResult.sectionName
+
+            // on item click
+            binding.txtData.setOnClickListener {
+                onItemClickListener?.let { it(searchResult.webUrl?:"") }
+            }
         }
     }
 
@@ -92,6 +98,12 @@ class SearchResultAdapter : PagingDataAdapter<Doc, RecyclerView.ViewHolder>(Diff
 
     }
 
+
+    // on item click listener
+    private var onItemClickListener: ((String) -> Unit)? = null
+    fun setOnItemClickListener(listener: (String) -> Unit) {
+        onItemClickListener = listener
+    }
     inner class ErrorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     class DiffCallback : DiffUtil.ItemCallback<Doc>() {

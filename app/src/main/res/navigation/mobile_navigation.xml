@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_articles"
             app:destination="@id/navigation_articles" />
+        <action
+            android:id="@+id/action_navigation_home_to_myArticleDetailsFragment"
+            app:destination="@id/myArticleDetailsFragment" />
 
     </fragment>
 
@@ -29,6 +32,9 @@
         <action
             android:id="@+id/action_navigation_search_to_navigation_articles"
             app:destination="@id/navigation_articles" />
+        <action
+            android:id="@+id/action_navigation_search_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
     </fragment>
 
     <fragment
@@ -46,6 +52,14 @@
         android:name="com.minamagid.thechallenge.presentation.details.DetailsFragment"
         android:label="Article Details"
         tools:layout="@layout/fragment_article_details">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/myArticleDetailsFragment"
+        android:name="com.minamagid.thechallenge.presentation.my_articles.MyArticlesFragment"
+        android:label="My Article Details"
+        tools:layout="@layout/fragment_my_articles">
 
     </fragment>
 </navigation>

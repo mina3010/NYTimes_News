@@ -30,7 +30,8 @@ class RepositoryImpl @Inject constructor(private val api: Api,private val db: NY
 
     //local
     override suspend fun insertArticle(article: Result?) {
-        db.localRoomDao.insert(article!!)
+        val x = db.localRoomDao.insert(article)
+
     }
 
     override suspend fun deleteLocalTable() {
