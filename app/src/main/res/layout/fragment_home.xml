@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.minamagid.thechallenge.presentation.home.HomeViewModel" />
+
+         </data>
+
+    <RelativeLayout
+        android:id="@+id/home_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titlePage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="NYT"
+            android:textColor="@color/white"
+            android:drawablePadding="-20dp"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            android:background="@color/main_color"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/titlePage"
+            android:fillViewport="true">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/searchTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Search"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/goToSearchBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:background="@drawable/outline_btn"
+                    android:drawableEnd="@drawable/ic_arrow_right_24"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Search Articles"
+                    android:textColor="@color/grey_dark"
+                    app:layout_constraintTop_toBottomOf="@+id/searchTitle"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/popularTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="Populars"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/goToSearchBtn"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linearLayoutCompat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularTitle">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/mostViewBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@drawable/outline_btn"
+                        android:drawableEnd="@drawable/ic_arrow_right_24"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Most Viewed"
+                        android:textColor="@color/grey_dark" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/mostSharedBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@drawable/outline_btn"
+                        android:drawableEnd="@drawable/ic_arrow_right_24"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Most Shared"
+                        android:textColor="@color/grey_dark" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/mostEmailsBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@drawable/outline_btn"
+                        android:drawableEnd="@drawable/ic_arrow_right_24"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Most Emails"
+                        android:textColor="@color/grey_dark" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/homeRv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/home_item" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+</layout>
+
